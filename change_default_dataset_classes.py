@@ -41,7 +41,7 @@ class DB_generator: # Only works fine for classification. TFDS must become an au
         np.random.seed(seed)
         idxs = np.arange(len(self.files))
         size_db = len(self.files)
-        # np.random.shuffle(idxs)
+        np.random.shuffle(idxs)
         files = np.array(self.files)[idxs]
         labels = np.array(self.labels)[idxs]
         self.data_train = files[round(size_db*val):]

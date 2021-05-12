@@ -8,6 +8,11 @@ Download the dataset and save in the path: "Database/flowers/"
 ## Run
 To run this code basically you need to run the sh file. Be sure that you have the admin admin permission or chmod +x.
 
-"""
+```
 ./generate_dataset_tfds.sh
-"""
+```
+To run the classifier EfficientNet, just run the following command:
+```
+python3 main.py
+```
+

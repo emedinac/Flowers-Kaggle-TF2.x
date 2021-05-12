@@ -11,7 +11,7 @@ class EfficientNetB0(tf.keras.Model):
         # Rebuild top
         x = layers.GlobalAveragePooling2D(name="global_avg_pool")(model.output)
         x = layers.BatchNormalization()(x)
-        x = layers.Dropout(0.2, name="top_dropout")(x)
+        x = layers.Dropout(0.75, name="top_dropout")(x)
         outputs = layers.Dense(classes, activation="softmax", name="pred")(x)
         # Compile
         self.model = tf.keras.Model(inputs, outputs, name="EfficientNet-B0")

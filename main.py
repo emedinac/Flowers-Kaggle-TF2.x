@@ -14,7 +14,7 @@ eval_each_num_epochs = 5
 # Training environment configuration
 train_stage = train.choose_methodology("simple")
 train_stage.loss_function = tools.Losses.SetCrossEntropy()
-train_stage.optimizer = tools.Optimizers.SetAdam(1e-4, Epochs)
+train_stage.optimizer = tools.Optimizers.SetAdam(1e-3, Epochs)
 # Testing environment configuration
 test_stage = test.choose_methodology("simple")
 test_stage.loss_function = tools.Losses.SetCrossEntropy()
@@ -24,6 +24,7 @@ train_ds, test_ds = dataloader.Get_database(name="flowers")
 model = m.EfficientNetB0(classes=classes) # User-defined
 
 storage = metric.Logger(log_file='logdir')
+print("\n\nInit training\n")
 for epoch in range(Epochs):
     train_stage.reset_states()
     test_stage.reset_states()
