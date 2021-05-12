@@ -5,11 +5,12 @@ import argparse
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='split training and testing sets')
     parser.add_argument('--path_data',  type=str,  help='a path where dataset file is located')
+    parser.add_argument('--dataset_name',  type=str,  help='a path where dataset name is located')
     parser.add_argument('--path_mod',  type=str,  help='a path where path mod is located')
     args = parser.parse_args()
 
     # Change Class names
-    with open('dataset/dataset.py') as f:
+    with open(args.dataset_name+"/"+args.dataset_name+".py") as f:
         data = f.read()
     init_txt = "tfds.features.ClassLabel(names="
     end_txt = "]),"
@@ -50,6 +51,6 @@ import csv # Temporal csv reader\n"
     ref2_txt = target_data[lblidx1+lblextra:lblidx1+lblextra+lblidx2]
     target_data = target_data.replace(ref2_txt, "\'"+args.path_data+"\' ")
     data = data.replace(ref1_txt, target_data)
-    file = open("dataset/dataset.py","w")
+    file = open(args.dataset_name+"/"+args.dataset_name+".py","w")
     file.write(data)
     file.close()

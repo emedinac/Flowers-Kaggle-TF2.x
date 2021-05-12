@@ -1,6 +1,6 @@
 # database paths
 Database
-dataset/
+flowers/
 logdir/
 # Byte-compiled / optimized / DLL files
 __pycache__/

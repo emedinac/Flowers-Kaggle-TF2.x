@@ -19,7 +19,7 @@ train_stage.optimizer = tools.Optimizers.SetAdam(1e-3, Epochs)
 test_stage = test.choose_methodology("simple")
 test_stage.loss_function = tools.Losses.SetCrossEntropy()
 # Load dataset created in TFDS
-train_ds, test_ds = dataloader.Get_database(name="dataset")
+train_ds, test_ds = dataloader.Get_database(name="flowers")
 # Load DEMO model
 model = m.EfficientNetB0(classes=classes) # User-defined
 
