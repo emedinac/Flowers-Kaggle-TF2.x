@@ -29,6 +29,11 @@ for epoch in range(Epochs):
     train_stage.reset_states()
     test_stage.reset_states()
     for image, label in train_ds:
+        # import cv2
+        # import numpy as np
+        # for i,img in enumerate(image): cv2.imwrite(str(i)+".png", np.uint8((img.numpy()-img.numpy().min())/(img.numpy().max()-img.numpy().min())*255))
+        # import pdb
+        # pdb.set_trace()
         train_stage.train_step(model, image, label)
 
     # if epoch%eval_each_num_epochs == 0:
@@ -44,6 +49,7 @@ for epoch in range(Epochs):
     storage.UpdateEpoch()
     # Save the best model weights.
     if test_stage.loss_updated:
+        print("new model saved")
         # model.save("test") # Init saver # Full graph
         model.save_weights("weights/{0}_{1}.pth".format(model.name, epoch))
 
