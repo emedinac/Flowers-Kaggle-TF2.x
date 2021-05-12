@@ -24,8 +24,12 @@ class DB_generator: # Only works fine for classification. TFDS must become an au
     def __init__(self, path):
         self.path = path
         self.ref_size = len(path)
-    def Load_data(self):
+    def Load_data(self, rename=False):
         self.files = getListOfFiles(self.path)
+        if rename:
+            for file in self.files:
+                if file.endswith("jpg"):
+                    os.rename(file, file[:file.find(".jpg")]+".jpeg")
         self.files = [f for f in self.files if not ".csv" in f] # not include csv files
         self.classes = os.listdir(self.path) # Target DB "Database/flowers/"
         self.classes = [f for f in self.classes if not ".csv" in f] # not include csv files
@@ -63,7 +67,7 @@ if __name__ == "__main__":
 
     
     DBgenerator = DB_generator(args.path_data)
-    DBgenerator.Load_data()
+    DBgenerator.Load_data(True)
     DBgenerator.Split_label_and_data(args.validation, args.seed)
     # DBgenerator.Get_labels_data()
     DBgenerator.Save_label_and_data(args.output_path)
