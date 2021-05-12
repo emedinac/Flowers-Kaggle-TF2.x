@@ -18,3 +18,7 @@ test_stage = test.choose_methodology("simple")
 train_ds, test_ds = dataloader.Get_database(name="dataset")
 # Load DEMO model
 model = m.EfficientNetB0(classes=classes) # User-defined
+
+storage = metric.Logger(log_file='logdir')
+for epoch in range(Epochs):
+	pass;
