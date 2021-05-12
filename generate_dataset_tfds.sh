@@ -1,3 +1,4 @@
+rm -rf dataset
 tfds new dataset # Init with this line
 python3 modify_database.py --path_data="Database/flowers/" --path_mod="db_gen_modification.txt"
 # Run DB generator
