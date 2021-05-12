@@ -1,0 +1,21 @@
+import tensorflow_datasets as tfds
+import tensorflow as tf
+
+# Data augmentation here may increase the accuracy in the training results.
+def Demo_Augmentation(image):
+    image = tf.image.resize(image,(224,224))
+    image = tf.image.convert_image_dtype(image, tf.float32)
+    image = tf.image.flip_left_right(image)
+    image = tf.image.flip_up_down(image)
+    # image = tf.image.resize_with_crop_or_pad(image,20,20)
+    # image = tf.image.random_contrast(image, lower=0.0, upper=1.0)
+    return image
+
+def Get_database(name):
+    # Load my dataset here
+    # This functions were created in order to follow the full-pipeline format from TFDS-nightly.
+    train_ds = tfds.load(name, split='train', shuffle_files=True, batch_size=16)
+    test_ds = tfds.load(name, split='test', shuffle_files=True, batch_size=16)
+    train_ds = train_ds.map(lambda data: (Demo_Augmentation(data["image"]), data["label"])).cache()
+    test_ds = test_ds.map(lambda data: (Demo_Augmentation(data["image"]), data["label"])).cache()
+    return train_ds, test_ds
