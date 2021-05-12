@@ -30,7 +30,8 @@ class DB_generator: # Only works fine for classification. TFDS must become an au
             for file in self.files:
                 if file.endswith("jpg"):
                     os.rename(file, file[:file.find(".jpg")]+".jpeg")
-        self.files = [f for f in self.files if not ".csv" in f] # not include csv files
+
+        self.files = [f for f in self.files if ".jpeg" in f] # not include csv files
         self.classes = os.listdir(self.path) # Target DB "Database/flowers/"
         self.classes = [f for f in self.classes if not ".csv" in f] # not include csv files
         self.classes_dict = {}
