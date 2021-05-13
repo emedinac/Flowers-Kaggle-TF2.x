@@ -20,5 +20,5 @@ class Optimizers:
         pass;
     def SetAdam(lr, epochs, decay=True):
         if decay:
-            lr = tf.optimizers.schedules.PolynomialDecay(lr, epochs, 1e-6, 2)
+            lr = tf.optimizers.schedules.PolynomialDecay(lr, epochs, 1e-6, 0.9)
         return tf.keras.optimizers.Adam(lr)

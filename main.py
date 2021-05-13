@@ -6,7 +6,7 @@ from environment import Training as train
 from environment import Testing as test
 
 # Config arguments or configuration file
-Epochs = 20
+Epochs = 100
 classes=5 # 5 flowers classes
 eval_each_num_epochs = 5
 # ...
